@@ -20,3 +20,11 @@ let pokemonList = [
         type: ['flying', 'normal']
     }
 ];
+
+for (let i=0; i <= pokemonList.length; i++) {
+    if(pokemonList[i].height > 1 && pokemonList[i].height < 1.6){
+        document.write(`<p> ${pokemonList[i].name} (height: ${pokemonList[i].height}) - Wow that's so big </p>`)
+    } else {
+        document.write(`<p> ${pokemonList[i].name} ${pokemonList[i].height} </p>`);
+    }
+}
