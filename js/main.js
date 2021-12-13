@@ -28,3 +28,14 @@ for (let i=0; i <= pokemonList.length; i++) {
         document.write(`<p> ${pokemonList[i].name} ${pokemonList[i].height} </p>`);
     }
 }
+
+function calc(a,b) {
+    if(b === 0){
+        return "You are trying to divide by Zero";
+    } else {
+        let result = a / b;
+        return result;
+    }
+}
+
+console.log(calc(2,0));
