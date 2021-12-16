@@ -24,14 +24,18 @@ let pokemonRepository = (function () {
   
     return {
       add: function(pokemon) {
-        pokemonList.push(pokemon);
+          if(typeof pokemon === Object){
+            pokemonList.push(pokemon);
+          } else {
+              return;
+          }
+        
       },
       getAll: function() {
         return pokemonList;
       }
     };
   })();
-
 
   pokemonRepository.getAll().forEach (function (poke) {
     if(poke.height > 1 && poke.height < 1.6){
