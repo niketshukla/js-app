@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.pokemon_list{
+    padding: 15px;
+}
+li{
+    list-style: none;
+    background-color: #eee;
+    width: 50%;
+    padding: 15px;
+    margin: 0 auto;
+}
+.listBtn{
+    border: 0px;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    background-color: rgb(115, 125, 211);
+    cursor: pointer;
+    color: #eee;
+}
