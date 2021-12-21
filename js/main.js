@@ -21,6 +21,24 @@ let pokemonRepository = (function () {
             type: ['flying', 'normal']
         }
     ];
+
+    let addListItem = (p) => {
+        let pokemon_list = document.querySelector('.pokemon_list');
+        let listItem = document.createElement('li');
+        let pokeBtn = document.createElement('button');
+        pokeBtn.innerText = p.name;
+        pokeBtn.classList.add('listBtn');
+        listItem.appendChild(pokeBtn);
+        pokemon_list.appendChild(listItem);
+
+        pokeBtn.addEventListener('click', function(){
+            showDetails(p);
+        });
+    }
+    
+    let showDetails = (s) => {
+        console.log(s);
+    }
    
     return {
       add: function(pokemon) {
@@ -33,7 +51,10 @@ let pokemonRepository = (function () {
       },
       getAll: function() {
         return pokemonList;
-      }
+      },
+      // I can use this method to call a function in return or the above method in add to write function in return
+      addListItem: addListItem,
+    //   showDetails: showDetails
     };
   })();
 
@@ -43,14 +64,7 @@ let pokemonRepository = (function () {
     } else {
         document.write(`<p> ${poke.name} ${poke.height} </p>`);
     }
-    
-    let pokemon_list = document.querySelector('.pokemon_list');
-    let listItem = document.createElement('li');
-    let pokeBtn = document.createElement('button');
-    pokeBtn.innerText = poke.name;
-    pokeBtn.classList.add('listBtn');
-    listItem.appendChild(pokeBtn);
-    pokemon_list.appendChild(listItem);
+    pokemonRepository.addListItem(poke);
 });
 
 // for (let i=0; i < pokemonList.length; i++) {
