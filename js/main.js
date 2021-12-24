@@ -1,26 +1,19 @@
 let pokemonRepository = (function () {
-    let pokemonList = [
-        {
-            name: 'pikachu',
-            height: 0.4,
-            type: ['electric']
-        },
-        {
-            name: 'charmander',
-            height: 0.6,
-            type: ['fire']
-        },
-        {
-            name: 'bulbasaur',
-            height: 0.7,
-            type: ['grass', 'poison']
-        },
-        {
-            name: 'pidgeot',
-            height: 1.5,
-            type: ['flying', 'normal']
-        }
-    ];
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
+
+    let add = (pokemon) => {
+        // checking if the pokemon dayta is in object form or not
+        if(typeof pokemon === 'object'){
+            pokemonList.push(pokemon);
+        } else {
+            return;
+         }
+    }
+
+    let getAll = () => {
+        return pokemonList;
+    }
 
     let addListItem = (p) => {
         let pokemon_list = document.querySelector('.pokemon_list');
@@ -39,49 +32,38 @@ let pokemonRepository = (function () {
     let showDetails = (s) => {
         console.log(s);
     }
+
+    let loadList = () => {
+        return fetch(apiUrl).then(function (response) {
+          return response.json();
+        }).then(function (json) {
+          json.results.forEach(function (item) {
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url
+            };
+            add(pokemon);
+          });
+        }).catch(function (e) {
+          console.error(e);
+        })
+    }
    
     return {
-      add: function(pokemon) {
-          if(typeof pokemon === Object){
-            pokemonList.push(pokemon);
-          } else {
-              return;
-          }
-        
-      },
-      getAll: function() {
-        return pokemonList;
-      },
-      // I can use this method to call a function in return or the above method in add to write function in return
+      add: add,
+      getAll: getAll,
       addListItem: addListItem,
-    //   showDetails: showDetails
+      loadList: loadList
     };
-  })();
+})();
 
-  pokemonRepository.getAll().forEach (function (poke) {
-    if(poke.height > 1 && poke.height < 1.6){
-        document.write(`<p> ${poke.name} (height: ${poke.height}) - Wow that's so big </p>`)
-    } else {
-        document.write(`<p> ${poke.name} ${poke.height} </p>`);
-    }
-    pokemonRepository.addListItem(poke);
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.loadList().then(function() {
+    // Now the data is loaded!
+    pokemonRepository.getAll().forEach(function(poke){
+        pokemonRepository.addListItem(poke);
+    });
 });
 
-// for (let i=0; i < pokemonList.length; i++) {
-//     if(pokemonList[i].height > 1 && pokemonList[i].height < 1.6){
-//         document.write(`<p> ${pokemonList[i].name} (height: ${pokemonList[i].height}) - Wow that's so big </p>`)
-//     } else {
-//         document.write(`<p> ${pokemonList[i].name} ${pokemonList[i].height} </p>`);
-//     }
-// }
 
-function calc(a,b) {
-    if(b === 0){
-        return "You are trying to divide by Zero";
-    } else {
-        let result = a / b;
-        return result;
-    }
-}
-
-console.log(calc(2,0));
