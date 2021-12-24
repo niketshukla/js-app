@@ -81,7 +81,6 @@ let pokemonRepository = (function () {
   };
 })();
 
-// console.log(pokemonRepository.getAll());
 
 pokemonRepository.loadList().then(function() {
   console.log("two - inside loadList");
