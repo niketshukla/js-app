@@ -19,7 +19,7 @@ let modalRepository = (function(){
         let modalTitle = document.createElement('h1');
         modalTitle.innerText = title;
         // creating text data in modal
-        modalText = document.createElement('p');
+        let modalText = document.createElement('p');
         modalText.innerText = text;
 
         // appending elements created
