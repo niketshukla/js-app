@@ -87,9 +87,9 @@ let pokemonRepository = (function () {
           // creating a title inside modal
           let modalTitle = document.createElement('h1');
           modalTitle.innerText = name;
-          // creating text data in modal
-          let modalText = document.createElement('p');
-          modalText.innerText = `Height: ${height}`;
+          // creating modalPokeHeight data in modal
+          let modalPokeHeight = document.createElement('p');
+          modalPokeHeight.innerText = `Height: ${height}`;
           // creating image tag in modal
           let pokeImg = document.createElement('img');
           pokeImg.src = image;
@@ -98,7 +98,7 @@ let pokemonRepository = (function () {
           modalContainer.appendChild(modal);
           modal.appendChild(modalClose);
           modal.appendChild(modalTitle);
-          modal.appendChild(modalText);
+          modal.appendChild(modalPokeHeight);
           modal.appendChild(pokeImg);
 
           // To show the modal
