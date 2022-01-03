@@ -57,9 +57,10 @@ let pokemonRepository = (function () {
     // console.log(item);
     return fetch(url)
       .then(function (response) {
-        return response.json();
+        return response.json(); // This returns promise
       })
       .then(function (details) {
+        // The actual JSON response
         // Now we add the details to the item
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
